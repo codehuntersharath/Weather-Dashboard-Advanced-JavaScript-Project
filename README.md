@@ -32,19 +32,19 @@ This project demonstrates real-world frontend development practices including AP
 
 ## 🌐 Live Demo
 <p align="center">
-  <a href="https://codehuntersharath.github.io/Advanced-Drawing-App-JavaScript-Canvas-Project">
+  <a href="https://codehuntersharath.github.io/Weather-Dashboard-Advanced-JavaScript-Project">
     <img src="https://img.shields.io/badge/🌐%20Live%20Demo-blue" />
   </a>
   <a href="https://youtu.be/tE48ORjZMXI">
     <img src="https://img.shields.io/badge/🎥%20YouTube-Tutorial-red" />
   </a>
-  <a href="https://github.com/codehuntersharath/Advanced-Drawing-App-JavaScript-Canvas-Project/stargazers">
+  <a href="https://github.com/codehuntersharath/Weather-Dashboard-Advanced-JavaScript-Project/stargazers">
     <img src="https://img.shields.io/badge/⭐%20Star-Repo-yellow" />
   </a>
 </p>
 
 🚀 Try the application live here:  
-👉 **https://codehuntersharath.github.io/Advanced-Drawing-App-JavaScript-Canvas-Project/**
+👉 **https://codehuntersharath.github.io/Weather-Dashboard-Advanced-JavaScript-Project/**
 
 ---
 
@@ -229,3 +229,4 @@ This project is created for **educational purposes**.
 ---
 
 **Built with ❤️ by Sharathchandar K**
+
