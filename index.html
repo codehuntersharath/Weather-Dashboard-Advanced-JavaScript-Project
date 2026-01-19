@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Dashboard — OpenWeather + Leaflet (Day/Night)</title>
+  <meta name="description"
+    content="Single-file weather dashboard using free OpenWeather APIs, Leaflet map layers, and Chart.js. Search cities, geolocate, switch weather layers, and view current, hourly, and 5-day forecasts. Includes Day/Night theme toggle." />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/style.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="wrap bar">
+      <div class="brand">
+        <span class="logo">⛅</span> <span>Weather Dashboard</span>
+      </div>
+      <input id="q" type="text" placeholder="Search city (e.g., Bengaluru, London, New York)…" />
+      <button id="btnSearch" class="btn">Search</button>
+      <button id="btnLocate" class="btn primary">Use my location</button>
+      <button id="btnTheme" class="btn toggle" title="Toggle Day/Night" aria-pressed="false">
+        🌙 Night
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Left: Map and layer controls -->
+    <section class="card">
+      <div class="section">
+        <h3>Map & Layers</h3>
+        <div class="row" style="justify-content: space-between">
+          <div class="row">
+            <label>Layer:</label>
+            <select id="layerSelect" class="select">
+              <option value="">None (base map)</option>
+              <option value="temp_new">Temperature</option>
+              <option value="precipitation_new">Precipitation</option>
+              <option value="clouds_new">Clouds</option>
+              <option value="wind_new">Wind</option>
+              <option value="pressure_new">Pressure</option>
+            </select>
+            <label>Opacity</label>
+            <input id="layerOpacity" type="range" class="range" min="0" max="1" step="0.05" value="0.7" />
+          </div>
+          <div class="row">
+            <label>Units</label>
+            <select id="units" class="select">
+              <option value="metric">Metric (°C, m/s)</option>
+              <option value="imperial">Imperial (°F, mph)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div id="map"></div>
+      <div class="section note">
+        Weather tiles by OpenWeather. Map © OpenStreetMap contributors.
+      </div>
+    </section>
+
+    <!-- Right: Current + details -->
+    <section class="grid">
+      <div class="card">
+        <div class="section current">
+          <div style="font-size: 32px" id="wIcon">☁️</div>
+          <div>
+            <div class="city" id="city">—</div>
+            <div class="desc" id="desc">
+              Search a city or use your location.
+            </div>
+          </div>
+          <div class="temp" id="temp">—</div>
+        </div>
+        <div class="section stats">
+          <div class="stat">
+            <div class="k">Feels like</div>
+            <div class="v" id="feels">—</div>
+          </div>
+          <div class="stat">
+            <div class="k">Humidity</div>
+            <div class="v" id="hum">—</div>
+          </div>
+          <div class="stat">
+            <div class="k">Wind</div>
+            <div class="v" id="wind">—</div>
+          </div>
+          <div class="stat">
+            <div class="k">Pressure</div>
+            <div class="v" id="press">—</div>
+          </div>
+          <div class="stat">
+            <div class="k">Visibility</div>
+            <div class="v" id="vis">—</div>
+          </div>
+          <div class="stat">
+            <div class="k">Sunrise / Sunset</div>
+            <div class="v" id="sun">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section">
+          <h3>Air Quality</h3>
+          <div class="row" style="justify-content: space-between; align-items: center">
+            <div id="aqiBadge" class="btn" style="font-weight: 700">
+              AQI —
+            </div>
+            <div class="note">1=Good · 5=Very Poor</div>
+          </div>
+          <div class="stats" style="margin-top: 10px">
+            <div class="stat">
+              <div class="k">PM2.5</div>
+              <div class="v" id="pm25">—</div>
+            </div>
+            <div class="stat">
+              <div class="k">PM10</div>
+              <div class="v" id="pm10">—</div>
+            </div>
+            <div class="stat">
+              <div class="k">NO₂</div>
+              <div class="v" id="no2">—</div>
+            </div>
+            <div class="stat">
+              <div class="k">O₃</div>
+              <div class="v" id="o3">—</div>
+            </div>
+            <div class="stat">
+              <div class="k">SO₂</div>
+              <div class="v" id="so2">—</div>
+            </div>
+            <div class="stat">
+              <div class="k">CO</div>
+              <div class="v" id="co">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section">
+          <h3>Hourly (next 24h)</h3>
+          <canvas id="hourlyChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section">
+          <h3>5-Day Forecast</h3>
+          <div id="forecast" class="forecast"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+  <script src="/script.js" />
+</body>
+
+</html>
